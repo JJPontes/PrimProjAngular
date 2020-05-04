@@ -52,6 +52,8 @@ namespace ProAgil.WebAPI
             {
                 endpoints.MapControllers();
             });
+
+            app.UseStaticFiles();
         }
     }
 }
