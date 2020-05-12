@@ -1,5 +1,5 @@
-import { RedeSocial } from "./RedeSocial";
-import { PalestranteEvento } from "./PalestranteEvento";
+import { RedeSocial } from './RedeSocial';
+import { PalestranteEvento } from './PalestranteEvento';
 
 export interface Palestrante {
     id: number;
