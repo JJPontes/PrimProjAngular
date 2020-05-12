@@ -5,7 +5,7 @@ namespace ProAgil.Repository
 {
     public interface IProAgilRepository
     {
-         void add<T> (T entity) where T : class;  
+         void Add<T> (T entity) where T : class;  
          void Update<T> (T entity) where T : class;
          void Delete<T> (T entity) where T : class;
 

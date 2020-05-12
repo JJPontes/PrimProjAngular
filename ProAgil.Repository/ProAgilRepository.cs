@@ -14,7 +14,7 @@ namespace ProAgil.Repository
         }
 
         //Gerais
-        public void add<T>(T entity) where T : class
+        public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
         }
