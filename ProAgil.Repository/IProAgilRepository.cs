@@ -14,11 +14,11 @@ namespace ProAgil.Repository
          //Eventos
         Task<Evento[]> GetAllEventoAsyncByTema(string tema, bool includePalestrantes);
         Task<Evento[]> GetAllEventoAsync(bool includePalestrantes);
-        Task<Evento> GetAllEventoAsyncById(int EventoId, bool includePalestrantes);
+        Task<Evento> GetEventoAsyncById(int EventoId, bool includePalestrantes);
         
         //Palestrante
         Task<Palestrante[]> GetAllPalestranteAsyncByName(string name, bool includeEventos);
-        Task<Palestrante> GetAllPalestranteAsync(int PalestranteId, bool includeEventos);
+        Task<Palestrante> GetPalestranteAsync(int PalestranteId, bool includeEventos);
 
     }
 }
