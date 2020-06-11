@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using ProAgil.Repository;
 using ProAgil.Domain;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using AutoMapper;
 
 namespace ProAgil.WebAPI
 {
@@ -40,6 +41,7 @@ namespace ProAgil.WebAPI
             services.AddCors();
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddMvc();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
