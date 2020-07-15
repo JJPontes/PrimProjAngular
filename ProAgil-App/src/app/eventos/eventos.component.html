@@ -109,7 +109,7 @@
             </div>
             <div class="form-group col-md-4">
               <label>Data</label>
-              <input type="text" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YYYY HH:MM a'}" [ngClass]="{'is-invalid': registerForm.get('data').errors && registerForm.get('data').touched}" bsDatePicker class="form-control" formControlName="data" placeholder="01/01/2000">
+              <input type="text" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YYYY HH:mm a'}" [ngClass]="{'is-invalid': registerForm.get('data').errors && registerForm.get('data').touched}" bsDatePicker class="form-control" formControlName="data" placeholder="01/01/2000">
               <div class="invalid-feedback">
                   Data é obrigatória!
                 </div>

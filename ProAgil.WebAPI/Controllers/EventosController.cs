@@ -112,7 +112,7 @@ namespace ProAgil.WebAPI.Controllers
 
                 _mapper.Map(model, evento);
 
-                _repo.Update(model);
+                _repo.Update(evento);
 
                 if (await _repo.SaveChangesAsync())
                 {
