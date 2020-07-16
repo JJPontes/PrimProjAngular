@@ -15,9 +15,8 @@ namespace ProAgil.WebAPI.Dtos
         [Range(2,100000, ErrorMessage="Minimo 2 participantes e Máximo 100000 participantes")]
         public int QtdPessoas { get; set; }
         public string ImgUrl { get; set; }
-        [Phone]
         public string Telefone { get; set; }
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
         public List<LoteDto> Lotes { get; set; }
         public List<PalestranteDto> Palestrante { get; set; }

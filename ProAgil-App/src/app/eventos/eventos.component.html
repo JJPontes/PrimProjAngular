@@ -1,5 +1,8 @@
-<div class="d-flex" style="margin-bottom: 10px;">
-  <div class="form-inline mr-auto">
+
+<app-titulo [title]="title"></app-titulo>
+
+<div class="d-flex" style="margin: 10px 0 10px 0;" >
+  <div class="form-inline mr-auto container"  style="margin-top:20px;">
     <label style="margin: 0 10px 0 10px;">Filtro: {{filtroLista}}</label>
     <div class="form-group mb-2" >
       <input class="form-control mr-2" placeholder="Buscar" [(ngModel)]="filtroLista">
@@ -109,8 +112,10 @@
             </div>
             <div class="form-group col-md-4">
               <label>Data</label>
-              <input type="text" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YYYY HH:MM a'}" [ngClass]="{'is-invalid': registerForm.get('data').errors && registerForm.get('data').touched}" bsDatePicker class="form-control" formControlName="data" placeholder="01/01/2000">
-              <div class="invalid-feedback">
+              <input type="text" bsDatepicker
+              [bsConfig]="{dateInputFormat: 'DD/MM/YYYY HH:mm a'}"
+              [ngClass]="{'is-invalid': registerForm.get('data').errors && registerForm.get('data').touched}" bsDatePicker class="form-control" formControlName="data" placeholder="01/01/2000">
+              <div *ngIf="registerForm.get('data').hasError('required') && registerForm.get('data').touched" class="invalid-feedback">
                   Data é obrigatória!
                 </div>
             </div>

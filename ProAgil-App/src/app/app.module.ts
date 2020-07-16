@@ -12,36 +12,49 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
+import { EventosComponent } from './eventos/eventos.component';
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
+import { ContatosComponent } from './contatos/contatos.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PalestranteComponent } from './palestrante/palestrante.component';
+import { TituloComponent } from './_shared/titulo/titulo.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventosComponent,
-    NavComponent,
-    DateTimeFormatPipePipe,
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot(),
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
-  ],
-  providers: [
-    EventoService,
-  ],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      EventosComponent,
+      NavComponent,
+      DateTimeFormatPipePipe,
+      ContatosComponent,
+      DashboardComponent,
+      PalestranteComponent,
+      TituloComponent
+   ],
+   imports: [
+      BrowserModule,
+      CommonModule,
+      AppRoutingModule,
+      HttpClientModule,
+      FormsModule,
+      BsDropdownModule.forRoot(),
+      TooltipModule.forRoot(),
+      ModalModule.forRoot(),
+      BrowserAnimationsModule,
+      ReactiveFormsModule,
+      BsDatepickerModule.forRoot(),
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
+   ],
+   providers: [
+      EventoService
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
