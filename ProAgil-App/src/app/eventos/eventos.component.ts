@@ -18,6 +18,8 @@ defineLocale('pt-br', ptBrLocale);
 })
 export class EventosComponent implements OnInit {
 
+  title = 'Eventos';
+
   _filtroLista = '';
 
   modoSalvar = 'post';
@@ -80,7 +82,7 @@ export class EventosComponent implements OnInit {
       qtdPessoas: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
       imgUrl: ['', Validators.required],
       email: ['', Validators.required],
-      data: ['', Validators.required],
+      data : ['', Validators.required],
     });
   }
 
@@ -107,7 +109,7 @@ export class EventosComponent implements OnInit {
             this.getEventos();
             this.toastr.success('Inserido com sucesso!');
           }, error => {
-            this.toastr.error('Erro ao tentar inserir: {error}!');
+            this.toastr.error(`Erro ao tentar inserir: ${error}!`);
           }
         );
       } else {
@@ -118,7 +120,7 @@ export class EventosComponent implements OnInit {
             this.getEventos();
             this.toastr.success('O evento foi editado com sucesso!');
           }, error => {
-            this.toastr.error('Erro ao Editar: ${error}');
+            this.toastr.error(`Erro ao Editar: ${error}`);
           }
         );
       }
@@ -139,7 +141,7 @@ export class EventosComponent implements OnInit {
         this.getEventos();
         this.toastr.success('O evento foi excluido com sucesso!');
       }, error => {
-        this.toastr.error('Erro ao tentar deletar: ${error}');
+        this.toastr.error(`Erro ao tentar deletar: ${error}`);
       }
     );
   }
@@ -150,7 +152,7 @@ export class EventosComponent implements OnInit {
         this.eventos = _eventos;
         this.eventosFiltrados = this.eventos;
       }, error => {
-        this.toastr.error('Erro ao tentar carregar eventos: ${error}');
+        this.toastr.error(`Erro ao tentar carregar eventos: ${error}`);
       });
   }
 
