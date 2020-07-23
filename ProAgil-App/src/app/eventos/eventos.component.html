@@ -1,4 +1,3 @@
-
 <app-titulo [title]="title"></app-titulo>
 
 <div class="d-flex" style="margin: 10px 0 10px 0;" >
@@ -38,7 +37,7 @@
   <tbody *ngIf="eventos && eventos.length" >
     <tr *ngFor="let eventos of eventosFiltrados">
       <th><img *ngIf ="mostrarImg" 
-            src="http://localhost:5000/img/{{eventos.imgUrl}}"
+            src="http://localhost:5000/resources/images/{{eventos.imgUrl}}?_ts={{atual}}"
             [style.width.px]="imagemLargura" [style.margin.px]="imagemMargem"></th>
       <th>{{eventos.id}}</th>
       <th>{{eventos.tema}}</th>
@@ -121,19 +120,29 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-7">
-              <label>Imagem</label>
-              <input type="text" [ngClass]="{'is-invalid': registerForm.get('imgUrl').errors && registerForm.get('imgUrl').touched}" class="form-control" formControlName="imgUrl" placeholder="">
-              <div class="invalid-feedback">
-                  Email é obrigatório!
-                </div>
-            </div>
             <div class="form-group col-md-5">
               <label style="margin-left: 3px;">Quantidade de Participantes</label>
               <input type="text" [ngClass]="{'is-invalid': registerForm.get('qtdPessoas').errors && registerForm.get('qtdPessoas').touched}" class="form-control" formControlName="qtdPessoas" placeholder="Quantidade de Participantes">
               <div class="invalid-feedback">
                   Quantidade de Participantes é obrigatória!
                 </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label>Imagem</label>
+              <table>
+                <tr>
+                  <td>
+                    <button class="btn btn-success" (click)="file.click()" >Enviar arquivo</button>
+                    <input type="file" #file 
+                    [ngClass]="{'is-invalid': registerForm.get('imgUrl').errors 
+                    && registerForm.get('imgUrl').touched}" (change)="onFileChange($event)" class="form-control" 
+                    formControlName="imgUrl" placeholder="" style="display: none;">
+                  </td>
+                </tr>
+              </table>
+              <div class="invalid-feedback">
+                  Imagem é obrigatório!
+              </div>
             </div>
           </div>
           <div class="form-row">
@@ -164,29 +173,29 @@
       </div>
     </div>
   </div>
-  </div>
-  <div bsModal #confirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
-	<div class="modal-dialog modal-sm">
-  		<div class="modal-content">
-    		<div class="modal-header">
-      			<h4 class="modal-title pull-left">
+</div>
+<div bsModal #confirm="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">
         			Deletando Evento
       			</h4>
-      			<button type="button" class="close pull-right" (click)="confirm.hide()" aria-label="Close">
-        			<span aria-hidden="true">&times;</span>
-      			</button>
-    		</div>
-    		<div class="modal-body">
-      			<p>{{bodyDeletarEvento}}</p>
-    		</div>    
-    		<div class="modal-footer btn-group d-flex">      
-      			<button type="button" class="btn btn-outline-primary" (click)="confirm.hide()">
+        <button type="button" class="close pull-right" (click)="confirm.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{bodyDeletarEvento}}</p>
+      </div>
+      <div class="modal-footer btn-group d-flex">
+        <button type="button" class="btn btn-outline-primary" (click)="confirm.hide()">
         			CENCELAR
       			</button>
-      			<button type="button" class="btn btn-outline-danger" (click)="confirmeDelete(confirm)">
+        <button type="button" class="btn btn-outline-danger" (click)="confirmeDelete(confirm)">
           			DELETAR
         		</button>
-    		</div>
-  		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -32,6 +32,9 @@ export class EventosComponent implements OnInit {
   mostrarImg = false;
   registerForm: FormGroup;
   bodyDeletarEvento = '';
+  file: File;
+  fileNameToUpdate: string;
+  atual: string;
 
   constructor(
     private eventoService: EventoService,
@@ -82,15 +85,17 @@ export class EventosComponent implements OnInit {
       qtdPessoas: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
       imgUrl: ['', Validators.required],
       email: ['', Validators.required],
-      data : ['', Validators.required],
+      data: ['', Validators.required],
     });
   }
 
   editarEvento(evento: Evento, template: any) {
     this.modoSalvar = 'put';
     this.openModal(template);
-    this.evento = evento;
-    this.registerForm.patchValue(evento);
+    this.evento = Object.assign({}, evento);
+    this.fileNameToUpdate = evento.imgUrl.toString();
+    this.evento.imgUrl = '';
+    this.registerForm.patchValue(this.evento);
   }
 
   novoEvento(template: any) {
@@ -98,13 +103,45 @@ export class EventosComponent implements OnInit {
     this.openModal(template);
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      this.file = event.target.files;
+    }
+  }
+
+  uploadImagem() {
+    if (this.modoSalvar === 'post') {
+      const nomeArquivo = this.evento.imgUrl.split('\\', 3);
+      this.evento.imgUrl = nomeArquivo[2];
+
+      this.eventoService.postUpload(this.file, nomeArquivo[2])
+      .subscribe(
+        () => {
+          this.atual = new Date().getMilliseconds().toString();
+          this.getEventos();
+        }
+      );
+    } else{
+      this.evento.imgUrl = this.fileNameToUpdate;
+      this.eventoService.postUpload(this.file, this.fileNameToUpdate)
+      .subscribe(
+        () => {
+          this.atual = new Date().getMilliseconds().toString();
+          this.getEventos();
+        }
+      );
+    }
+  }
+
+
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
       if (this.modoSalvar === 'post') {
         this.evento = Object.assign({}, this.registerForm.value);
+        this.uploadImagem();
         this.eventoService.postEvento(this.evento).subscribe(
           (novoEvento: Evento) => {
-            console.log(novoEvento);
             template.hide();
             this.getEventos();
             this.toastr.success('Inserido com sucesso!');
@@ -114,6 +151,7 @@ export class EventosComponent implements OnInit {
         );
       } else {
         this.evento = Object.assign({ id: this.evento.id }, this.registerForm.value);
+        this.uploadImagem();
         this.eventoService.putEvento(this.evento).subscribe(
           () => {
             template.hide();
