@@ -15,6 +15,9 @@ using ProAgil.Repository;
 using ProAgil.Domain;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using AutoMapper;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
 
 namespace ProAgil.WebAPI
 {
@@ -62,8 +65,12 @@ namespace ProAgil.WebAPI
             {
                 endpoints.MapControllers();
             });
-
-            app.UseStaticFiles();
+            // diretiva de onde ficará os arquivos
+            app.UseStaticFiles(new StaticFileOptions(){
+                //indica onde eles pode pegar as imagens
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),@"Resources")),
+                RequestPath = new  PathString("/Resources")
+            });
         }
     }
 }
